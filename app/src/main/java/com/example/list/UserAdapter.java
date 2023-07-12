@@ -24,6 +24,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Userviewhoder>
 
     @Override
     public int getItemCount() {
+
+        String test="đây là dữ liệu mới cập nhật";
         return 0;
     }
 
