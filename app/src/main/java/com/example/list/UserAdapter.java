@@ -1,5 +1,7 @@
 package com.example.list;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,22 +12,44 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 
+import java.util.List;
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Userviewhoder>{
+    private Context context;
+    private List<User> users;
+
+    public UserAdapter(Context context) {
+        this.context = context;
+    }
+    public  void  setdata(List<User> list){
+        this.users=list;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public Userviewhoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
+        return new Userviewhoder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Userviewhoder holder, int position) {
-
+User user=users.get(position);
+if(user==null){
+    return;
+}else{
+    holder.img.setImageResource(user.getSrc());
+    holder.txt.setText(user.text);
+}
     }
 
     @Override
     public int getItemCount() {
 
-        String test="đây là dữ liệu mới cập nhật";
+        if(users!=null){
+            return users.size();
+        }
         return 0;
     }
 
